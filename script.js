@@ -1,5 +1,22 @@
 'use strict';
 
+/* ── Password Gate ── */
+(function() {
+  const _k = 'UHJhYmhTaW5naDIwMjY='; // base64
+  const _s = 'pg_auth';
+  if (sessionStorage.getItem(_s) === _k) return;
+  const input = prompt('🔐 Enter password to view this portfolio:');
+  if (input !== null && btoa(input) === _k) {
+    sessionStorage.setItem(_s, _k);
+  } else {
+    document.documentElement.innerHTML =
+      '<body style="background:#080c1a;color:#94a3b8;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;flex-direction:column;gap:1rem;">' +
+      '<span style="font-size:2rem">🔒</span>' +
+      '<p style="margin:0">Incorrect password. Please refresh to try again.</p>' +
+      '</body>';
+  }
+})();
+
 const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ── Loader ── */
