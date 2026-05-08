@@ -269,7 +269,7 @@ function initCounters() {
         else el.textContent = target >= 1000 ? target.toLocaleString() : target;
       })(t0);
     });
-  }, { threshold: 0.4 }).observe(about);
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }).observe(about);
 }
 
 /* ── Scroll Animations ── */
