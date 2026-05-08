@@ -283,6 +283,11 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
 .pub-card__tag{font-family:var(--mono);font-size:.65rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em}
 .pub-card__title{font-size:.9rem;font-weight:600;color:var(--t1);line-height:1.5}
 .pub-card__meta{font-size:.75rem;color:var(--t3)}
+/* Featured article card */
+.pub-card--featured{padding:0;margin-bottom:1.25rem;overflow:hidden;border-radius:var(--r)}
+.pub-card--featured:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(201,168,76,.2)}
+.pub-card__cover{height:200px;overflow:hidden;background:var(--bg-elevated)}
+.pub-card__featured-body{padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:.5rem}
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:1024px){.projects__grid{grid-template-columns:repeat(2,1fr)}}
