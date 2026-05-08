@@ -244,7 +244,7 @@ function initTypewriter() {
   const el = document.getElementById('hero-typed');
   if (!el || typeof Typed === 'undefined') return;
   new Typed(el, {
-    strings: ['enterprise AI infrastructure.', 'Kubernetes platforms at scale.', 'engineering orgs that ship.', 'cloud-native systems.', 'platforms enabling $25B+ revenue.'],
+    strings: ['enterprise AI infrastructure.', 'Kubernetes platforms at Fortune 500 scale.', 'engineering orgs that ship.', 'cloud-native systems that last.', 'platforms powering $25B+ in revenue.'],
     typeSpeed: 55, backSpeed: 30, backDelay: 2000, loop: true, smartBackspace: true
   });
 }
