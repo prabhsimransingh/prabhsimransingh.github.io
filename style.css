@@ -147,8 +147,8 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
 .about__thought-items{display:flex;flex-direction:column;gap:.6rem}
 .thought-item{font-size:.875rem;color:var(--t2);line-height:1.5}
 .about__visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:380px}
-.avatar-card{width:260px;height:300px;position:relative;overflow:hidden;border-radius:var(--r)}
-.avatar-card__img{width:100%;height:100%;object-fit:cover}
+.avatar-card{width:260px;height:320px;position:relative;overflow:hidden;border-radius:var(--r);background:linear-gradient(160deg,var(--bg-elevated),var(--bg-surface))}
+.avatar-card__img{width:100%;height:100%;object-fit:cover;object-position:top center}
 .avatar-card__fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:clamp(3.5rem,8vw,5rem);font-weight:800}
 .avatar-card__glow{position:absolute;inset:-2px;border-radius:inherit;background:var(--grad);z-index:-1;opacity:.4;animation:gp 3s ease-in-out infinite}
 @keyframes gp{0%,100%{opacity:.3;filter:blur(8px)}50%{opacity:.6;filter:blur(16px)}}

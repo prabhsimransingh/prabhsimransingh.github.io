@@ -314,12 +314,15 @@ function initFilter() {
       tab.classList.add('active');
       const f = tab.dataset.filter;
       cards.forEach(card => {
-        const show = f === 'all' || (card.dataset.tags || '').includes(f);
+        const show = f === 'all' || (card.dataset.tags || '').split(' ').includes(f);
         if (show) {
           card.style.display = '';
+          card.style.opacity = '';
+          gsap.killTweensOf(card);
           gsap.fromTo(card, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
         } else {
-          gsap.to(card, { opacity: 0, y: -10, duration: 0.3, ease: 'power2.in', onComplete: () => card.style.display = 'none' });
+          gsap.killTweensOf(card);
+          gsap.to(card, { opacity: 0, y: -10, duration: 0.3, ease: 'power2.in', onComplete: () => { card.style.display = 'none'; } });
         }
       });
     });
