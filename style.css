@@ -229,14 +229,14 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
 .contact__inner{text-align:center;max-width:700px;margin:0 auto}
 .contact__heading{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:1.25rem}
 .contact__sub{font-size:1rem;color:var(--t2);margin-bottom:3rem;line-height:1.7}
-.contact__cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2rem;text-align:left}
-.contact-card{padding:1.5rem;display:flex;align-items:center;gap:1rem}
-.cc-icon{font-size:1.5rem;flex-shrink:0}
-.cc-body{flex:1;min-width:0}
-.cc-label{display:block;font-size:.7rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:.2rem}
-.cc-val{font-size:.9rem;font-weight:500;word-break:break-all}
-.cc-badge{font-size:.7rem;padding:.2rem .6rem;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.15);border-radius:var(--rf);color:var(--accent);white-space:nowrap;font-family:var(--mono);flex-shrink:0}
-.cc-copy{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--glass-bg);border:1px solid var(--glass-bd);color:var(--t2);transition:all .2s;flex-shrink:0}
+.contact__strip{display:flex;align-items:center;gap:0;margin-bottom:2rem;padding:.75rem 1.5rem;border-radius:var(--r)}
+.contact-strip__item{display:flex;align-items:center;gap:.6rem;padding:.5rem 1.5rem;flex:1;flex-wrap:wrap}
+.contact-strip__divider{width:1px;height:40px;background:var(--glass-bd);flex-shrink:0}
+.cc-icon{font-size:1.1rem;flex-shrink:0}
+.cc-label{font-size:.65rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--t3);flex-shrink:0}
+.cc-val{font-size:.88rem;font-weight:500;color:var(--t1)}
+.cc-badge{font-size:.65rem;padding:.15rem .5rem;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.15);border-radius:var(--rf);color:var(--accent);white-space:nowrap;font-family:var(--mono);flex-shrink:0}
+.cc-copy{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--glass-bg);border:1px solid var(--glass-bd);color:var(--t2);transition:all .2s;flex-shrink:0}
 .cc-copy:hover{background:var(--accent);color:var(--bg-void);border-color:var(--accent)}
 .contact__socials{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
 .social-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.65rem 1.5rem;border-radius:var(--rf);font-size:.875rem;font-weight:500;color:var(--t2);transition:all .3s var(--ease)}
@@ -316,7 +316,9 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
   .about__visual{order:-1;min-height:300px}
   .floating-badge{display:none}
   .projects__grid{grid-template-columns:1fr}
-  .contact__cards{grid-template-columns:1fr}
+  .contact__strip{flex-direction:column;padding:.5rem 1rem;gap:.25rem}
+  .contact-strip__item{padding:.6rem .5rem;flex-wrap:wrap;gap:.5rem}
+  .contact-strip__divider{width:100%;height:1px}
   .hero__ctas{flex-direction:column;align-items:center}
   .hero__ctas .btn{width:100%;max-width:280px;justify-content:center}
   .about__stats{gap:1.25rem}
@@ -325,13 +327,21 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
   .awards__grid{grid-template-columns:1fr}
   .impact-item{padding:.75rem 1.25rem}
   .impact-divider{display:none}
+  .hero__name{font-size:clamp(2.4rem,10vw,3.5rem)}
+  .section-heading{font-size:clamp(1.6rem,6vw,2.2rem)}
+  .tl-role{font-size:1rem}
+  .speaking-card__title{font-size:.9rem}
 }
 @media(max-width:480px){
   .section{padding:4rem 0}
-  .avatar-card{width:200px;height:240px}
+  .avatar-card{width:180px;height:220px}
   .section-heading{margin-bottom:2rem}
   .filter-tab{padding:.4rem .8rem;font-size:.75rem}
   .footer__inner{flex-direction:column;text-align:center}
+  .pub-card--featured .pub-card__cover{height:160px}
+  .impact-bar__inner{flex-wrap:wrap;gap:.5rem}
+  .impact-item{flex:1 1 45%;padding:.75rem .5rem}
+  .impact-divider{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
