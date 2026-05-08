@@ -64,7 +64,7 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
 
 /* Layout */
 .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
-.section{padding:7rem 0;position:relative}
+.section{padding:5rem 0;position:relative}
 
 /* Glass */
 .glass{background:var(--glass-bg);border:1px solid var(--glass-bd);box-shadow:var(--glass-sh);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-radius:var(--r)}
@@ -74,7 +74,7 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
 
 /* Section labels */
 .section-label{display:inline-block;font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.1em;margin-bottom:1rem;opacity:.8}
-.section-heading{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:3rem}
+.section-heading{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:2rem}
 
 /* Buttons */
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.75rem;border-radius:var(--rf);font-size:.9rem;font-weight:600;transition:all .3s var(--ease);position:relative;cursor:pointer;white-space:nowrap}
@@ -230,9 +230,9 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
 .contact__inner{text-align:center;max-width:700px;margin:0 auto}
 .contact__heading{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:1.25rem}
 .contact__sub{font-size:1rem;color:var(--t2);margin-bottom:3rem;line-height:1.7}
-.contact__strip{display:flex;align-items:center;gap:0;margin-bottom:2rem;padding:.75rem 1.5rem;border-radius:var(--r)}
-.contact-strip__item{display:flex;align-items:center;gap:.6rem;padding:.5rem 1.5rem;flex:1;flex-wrap:wrap}
-.contact-strip__divider{width:1px;height:40px;background:var(--glass-bd);flex-shrink:0}
+.contact__strip{display:flex!important;flex-direction:row!important;align-items:center;gap:0;margin-bottom:2rem;padding:.6rem 1rem;border-radius:var(--r)}
+.contact-strip__item{display:flex;flex-direction:row;align-items:center;gap:.5rem;padding:.4rem 1.25rem;flex:1;min-width:0}
+.contact-strip__divider{width:1px;height:36px;background:var(--glass-bd);flex-shrink:0}
 .cc-icon{font-size:1.1rem;flex-shrink:0}
 .cc-label{font-size:.65rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--t3);flex-shrink:0}
 .cc-val{font-size:.88rem;font-weight:500;color:var(--t1)}
@@ -278,6 +278,7 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
 .speaking-card__meta{font-size:.8rem;color:var(--t3)}
 
 /* ══ PUBLICATIONS ══ */
+.pubs__featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1rem}
 .pubs__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
 .pub-card{padding:1.25rem 1.5rem;border-radius:var(--r);display:flex;flex-direction:column;gap:.5rem;transition:all .3s var(--ease);text-decoration:none}
 .pub-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
@@ -304,7 +305,7 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:1024px){.projects__grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:1024px){.speaking__grid{grid-template-columns:repeat(2,1fr)}.pubs__grid{grid-template-columns:repeat(2,1fr)}.awards__grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1024px){.speaking__grid{grid-template-columns:repeat(2,1fr)}.pubs__grid{grid-template-columns:repeat(2,1fr)}.awards__grid{grid-template-columns:repeat(2,1fr)}.pubs__featured-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){
   .section{padding:5rem 0}
   .nav__links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg-elevated);border-bottom:1px solid var(--glass-bd);padding:1rem 0;margin-left:0}
@@ -332,6 +333,10 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
   .section-heading{font-size:clamp(1.6rem,6vw,2.2rem)}
   .tl-role{font-size:1rem}
   .speaking-card__title{font-size:.9rem}
+  .pubs__featured-grid{grid-template-columns:1fr}
+  .contact__strip{flex-direction:column!important;padding:.5rem 1rem}
+  .contact-strip__item{padding:.5rem .5rem}
+  .contact-strip__divider{width:100%!important;height:1px!important}
 }
 @media(max-width:480px){
   .section{padding:4rem 0}

@@ -316,19 +316,49 @@
       </div>
 
       <!-- Publications -->
-      <!-- Featured Article -->
-      <a href="https://medium.com/intelligent-data-insights/stop-rebuilding-the-same-ai-data-pipeline-over-and-over-1402854206de" class="pub-card pub-card--featured glass" target="_blank" rel="noopener">
-        <div class="pub-card__cover">
-          <img src="assets/articles/medium-ai-pipeline.jpg" alt="Stop Rebuilding the Same AI Data Pipeline" style="width:100%;height:100%;object-fit:cover;border-radius:8px 8px 0 0;">
-        </div>
-        <div class="pub-card__featured-body">
-          <span class="pub-card__tag">Medium · NetApp · Intelligent Data Insights</span>
-          <h4 class="pub-card__title">"Stop Rebuilding the Same AI Data Pipeline Over and Over"</h4>
-          <p class="pub-card__meta">Build reusable data prep into your infrastructure · NetApp Engineering</p>
-        </div>
-      </a>
+      <div class="pubs__featured-grid">
+
+        <a href="https://medium.com/intelligent-data-insights/stop-rebuilding-the-same-ai-data-pipeline-over-and-over-1402854206de" class="pub-card pub-card--featured glass" target="_blank" rel="noopener">
+          <div class="pub-card__cover">
+            <img src="assets/articles/medium-ai-pipeline.jpg" alt="Stop Rebuilding the Same AI Data Pipeline" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="pub-card__featured-body">
+            <span class="pub-card__tag">Medium · NetApp · 2025</span>
+            <h4 class="pub-card__title">"Stop Rebuilding the Same AI Data Pipeline Over and Over"</h4>
+            <p class="pub-card__meta">Build reusable data prep into your infrastructure</p>
+          </div>
+        </a>
+
+        <a href="https://community.netapp.com/t5/Tech-ONTAP-Blogs/From-Innovation-to-Assurance-How-NetApp-Data-Guardrails-Enable-Safe-AI-Platforms/ba-p/464106" class="pub-card pub-card--featured glass" target="_blank" rel="noopener">
+          <div class="pub-card__cover">
+            <img src="assets/articles/netapp-data-guardrails.jpg" alt="NetApp Data Guardrails" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="pub-card__featured-body">
+            <span class="pub-card__tag">NetApp Tech ONTAP Blog · 2025</span>
+            <h4 class="pub-card__title">"From Innovation to Assurance: How NetApp Data Guardrails Enable Safe AI Platforms"</h4>
+            <p class="pub-card__meta">AI safety infrastructure for enterprise platforms</p>
+          </div>
+        </a>
+
+        <a href="http://tfir.io/synthetic-testing-framework-for-continuous-monitoring-of-kubernetes-mutating-webhooks/" class="pub-card pub-card--featured glass" target="_blank" rel="noopener">
+          <div class="pub-card__cover">
+            <img src="assets/articles/tfir-synthetic-testing.jpg" alt="Synthetic Testing Framework for Kubernetes" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="pub-card__featured-body">
+            <span class="pub-card__tag">tFiR.io · Open Source · Salesforce</span>
+            <h4 class="pub-card__title">"Synthetic Testing Framework for Continuous Monitoring of Kubernetes Mutating Webhooks"</h4>
+            <p class="pub-card__meta">Open source tooling · Kube Synthetic Scaler · Salesforce Engineering</p>
+          </div>
+        </a>
+
+      </div>
 
       <div class="pubs__grid">
+        <a href="https://github.com/salesforce/kube-synthetic-scaler" class="pub-card glass" target="_blank" rel="noopener">
+          <span class="pub-card__tag">⭐ Open Source · Salesforce GitHub</span>
+          <h4 class="pub-card__title">kube-synthetic-scaler</h4>
+          <p class="pub-card__meta">Original open-source contribution · Synthetic load testing for Kubernetes at scale · 3 patents</p>
+        </a>
         <a href="#" class="pub-card glass" target="_blank" rel="noopener">
           <span class="pub-card__tag">Salesforce Engineering Blog</span>
           <h4 class="pub-card__title">"A Generic Sidecar Injector for Kubernetes"</h4>
@@ -337,22 +367,17 @@
         <a href="https://vmblog.com/bylines/how-salesforce-operates-kubernetes-multitenant-clusters-in-public-cloud-at-scale/" class="pub-card glass" target="_blank" rel="noopener">
           <span class="pub-card__tag">VMblog · Salesforce</span>
           <h4 class="pub-card__title">"How Salesforce Operates Kubernetes Multitenant Clusters in Public Cloud at Scale"</h4>
-          <p class="pub-card__meta">25,000+ reads · Industry reference · Multi-tenant architecture at $25B scale</p>
+          <p class="pub-card__meta">25,000+ reads · Industry reference</p>
         </a>
         <a href="https://vmblog.com/bylines/kubernetes-resilience-pioneering-data-protection-for-the-cloud-native-era/" class="pub-card glass" target="_blank" rel="noopener">
           <span class="pub-card__tag">VMblog · KubeCon 2025</span>
           <h4 class="pub-card__title">"Kubernetes Resilience: Pioneering Data Protection for the Cloud-Native Era"</h4>
-          <p class="pub-card__meta">Published as part of KubeCon conference · NetApp AI infrastructure</p>
+          <p class="pub-card__meta">KubeCon conference · NetApp AI infrastructure</p>
         </a>
         <a href="#" class="pub-card glass" target="_blank" rel="noopener">
           <span class="pub-card__tag">Salesforce Blog 2024</span>
           <h4 class="pub-card__title">"How Salesforce Uses Immutable Infrastructure in Hyperforce"</h4>
           <p class="pub-card__meta">Gartner &amp; Forrester cited · AWS EKS influenced</p>
-        </a>
-        <a href="#" class="pub-card glass" target="_blank" rel="noopener">
-          <span class="pub-card__tag">Open Source · Salesforce GitHub</span>
-          <h4 class="pub-card__title">Generic Sidecar Injector &amp; Kube Synthetic Scaler</h4>
-          <p class="pub-card__meta">3 patent applications · Influenced AWS EKS &amp; GKE roadmaps</p>
         </a>
       </div><!-- end pubs__grid -->
 
@@ -507,28 +532,15 @@
           </div>
         </div>
 
-        <!-- Education -->
+        <!-- Education (condensed) -->
         <div class="timeline-entry">
           <div class="timeline-entry__date">2013 – 2015</div>
           <div class="timeline-entry__dot timeline-entry__dot--edu"></div>
-          <div class="timeline-entry__content glass">
+          <div class="timeline-entry__content glass" style="padding:1rem 1.5rem">
             <div class="tl-header">
-              <h3 class="tl-role">M.S. Information Systems Management · University Scholar</h3>
-              <span class="tl-company gradient-text">Carnegie Mellon University</span>
+              <h3 class="tl-role" style="font-size:.95rem">M.S. Information Systems Management · Carnegie Mellon University</h3>
+              <span class="tl-company gradient-text" style="font-size:.8rem">University Scholar · Pittsburgh, PA</span>
             </div>
-            <span class="tl-location">📍 Pittsburgh, PA</span>
-          </div>
-        </div>
-
-        <div class="timeline-entry">
-          <div class="timeline-entry__date">2007 – 2011</div>
-          <div class="timeline-entry__dot timeline-entry__dot--edu"></div>
-          <div class="timeline-entry__content glass">
-            <div class="tl-header">
-              <h3 class="tl-role">B.E. Computer Science</h3>
-              <span class="tl-company gradient-text">Panjab University</span>
-            </div>
-            <span class="tl-location">📍 Chandigarh, India</span>
           </div>
         </div>
 

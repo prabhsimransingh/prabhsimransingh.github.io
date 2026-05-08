@@ -373,6 +373,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initTypewriter();
   initCounters();
+  // Ensure all project cards are visible before filter/ScrollTrigger run
+  document.querySelectorAll('.project-card').forEach(c => {
+    c.style.opacity = '1';
+    c.style.display = '';
+  });
   initFilter();
   initCopy();
 
