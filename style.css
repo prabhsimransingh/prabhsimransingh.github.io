@@ -289,9 +289,21 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
 .pub-card__cover{height:200px;overflow:hidden;background:var(--bg-elevated)}
 .pub-card__featured-body{padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:.5rem}
 
+/* ══ AWARDS ══ */
+.awards__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:1.5rem}
+.award-card{border-radius:var(--r);overflow:hidden;transition:all .3s var(--ease);text-decoration:none}
+.award-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(201,168,76,.2);border-color:var(--accent)}
+.award-card__img{height:260px;overflow:hidden;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center}
+.award-card__img img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .4s var(--ease)}
+.award-card:hover .award-card__img img{transform:scale(1.04)}
+.award-card__body{padding:1.1rem 1.25rem;display:flex;flex-direction:column;gap:.4rem}
+.award-card__tag{font-family:var(--mono);font-size:.65rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em}
+.award-card__title{font-size:.95rem;font-weight:700;color:var(--t1)}
+.award-card__meta{font-size:.75rem;color:var(--t3)}
+
 /* ══ RESPONSIVE ══ */
 @media(max-width:1024px){.projects__grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:1024px){.speaking__grid{grid-template-columns:repeat(2,1fr)}.pubs__grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1024px){.speaking__grid{grid-template-columns:repeat(2,1fr)}.pubs__grid{grid-template-columns:repeat(2,1fr)}.awards__grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){
   .section{padding:5rem 0}
   .nav__links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg-elevated);border-bottom:1px solid var(--glass-bd);padding:1rem 0;margin-left:0}
@@ -310,6 +322,7 @@ body.cur-hover #cursor-ring{width:54px;height:54px;background:rgba(201,168,76,.0
   .about__stats{gap:1.25rem}
   .speaking__grid{grid-template-columns:1fr}
   .pubs__grid{grid-template-columns:1fr}
+  .awards__grid{grid-template-columns:1fr}
   .impact-item{padding:.75rem 1.25rem}
   .impact-divider{display:none}
 }
