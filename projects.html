@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Prabh Singh</title>
+  <meta name="description" content="Live projects by Prabh Singh — apps, tools and side projects shipped and running.">
+  <meta property="og:title" content="Projects — Prabh Singh">
+  <meta property="og:description" content="Apps, tools and side projects shipped and running live.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#c9a84c">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #080b12;
+      --surface:   #0f1420;
+      --border:    rgba(255,255,255,0.07);
+      --bh:        rgba(201,168,76,0.28);
+      --gold:      #c9a84c;
+      --gold-2:    #e8c76d;
+      --text:      #e8eaf0;
+      --muted:     #9ca3af;
+      --dim:       #6b7280;
+      --r:         14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100dvh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* noise */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 200;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.022;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      height: 64px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,11,18,0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+    .nav-back svg { flex-shrink: 0; }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 116px 2rem 80px;
+    }
+
+    /* ── HEADER ── */
+    .hd {
+      margin-bottom: 3rem;
+    }
+    .hd-eye {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+    .hd-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.04;
+    }
+    .hd-sub {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 44ch;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    /* Exactly spans 2 cols */
+    .card--w2 { grid-column: span 2; }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.22s, box-shadow 0.25s;
+    }
+
+    /* spotlight */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      background: radial-gradient(520px circle at var(--mx,50%) var(--my,50%), rgba(201,168,76,0.05), transparent 42%);
+    }
+
+    .card:hover {
+      border-color: var(--bh);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 44px rgba(0,0,0,0.38), 0 0 0 1px rgba(201,168,76,0.07);
+    }
+    .card:hover::before { opacity: 1; }
+
+    /* top accent bar */
+    .card-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      border-radius: var(--r) var(--r) 0 0;
+    }
+    .bar-gold   { background: linear-gradient(90deg,#c9a84c,#e8c76d); }
+    .bar-blue   { background: linear-gradient(90deg,#3b82f6,#818cf8); }
+    .bar-green  { background: linear-gradient(90deg,#22c55e,#16a34a); }
+    .bar-teal   { background: linear-gradient(90deg,#14b8a6,#06b6d4); }
+    .bar-amber  { background: linear-gradient(90deg,#f59e0b,#d97706); }
+    .bar-purple { background: linear-gradient(90deg,#a855f7,#7c3aed); }
+
+    .card-platform {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.63rem;
+      color: var(--dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .card-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .card--w2 .card-name { font-size: 1.55rem; }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    /* links */
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: auto;
+    }
+
+    .lnk {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.76rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 7px;
+      padding: 0.32rem 0.6rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .lnk:hover {
+      color: var(--gold);
+      border-color: rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.06);
+    }
+    .lnk--p {
+      color: var(--gold);
+      border-color: rgba(201,168,76,0.22);
+    }
+    .lnk--p:hover {
+      border-color: rgba(201,168,76,0.5);
+      background: rgba(201,168,76,0.1);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--dim);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── ENTRY ANIMATIONS ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .hd {
+        animation: up 0.42s ease both;
+      }
+      .card {
+        opacity: 0;
+        animation: up 0.48s ease both;
+      }
+      .card:nth-child(1) { animation-delay: 0.06s; }
+      .card:nth-child(2) { animation-delay: 0.12s; }
+      .card:nth-child(3) { animation-delay: 0.18s; }
+      .card:nth-child(4) { animation-delay: 0.24s; }
+      .card:nth-child(5) { animation-delay: 0.30s; }
+      .card:nth-child(6) { animation-delay: 0.36s; }
+
+      @keyframes up {
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .card--w2 { grid-column: span 2; }
+    }
+
+    @media (max-width: 540px) {
+      nav { padding: 0 1.25rem; }
+      main { padding: 96px 1.25rem 60px; }
+      .grid { grid-template-columns: 1fr; }
+      .card--w2 { grid-column: span 1; }
+      .card--w2 .card-name { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">PS</a>
+    <a href="/" class="nav-back">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Portfolio
+    </a>
+  </nav>
+
+  <main>
+    <div class="hd">
+      <p class="hd-eye">// live projects</p>
+      <h1 class="hd-title">Things I built.</h1>
+      <p class="hd-sub">Apps, tools and side projects — all shipped and running live.</p>
+    </div>
+
+    <div class="grid">
+
+      <!-- Exactly — featured, 2 cols -->
+      <div class="card card--w2">
+        <div class="card-bar bar-blue"></div>
+        <span class="card-platform">Vercel · Expo · Next.js</span>
+        <h2 class="card-name">Exactly</h2>
+        <p class="card-desc">AI product recommendation app. One query, one confident answer — product name, price, store and buy link. No comparison lists, no noise. Just the right thing.</p>
+        <div class="card-links">
+          <a href="https://exactly-mobile.vercel.app" class="lnk lnk--p" target="_blank" rel="noopener">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live App
+          </a>
+          <a href="https://exactly-mobile.vercel.app/pitch" class="lnk" target="_blank" rel="noopener">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Pitch Deck
+          </a>
+          <a href="https://hyperframes.dev/p/05f22830-773f-4db6-a592-3b516aca5b31?claim_token=L5NvchxuxPagzbvqPsK12kyhr0GPwmpG" class="lnk" target="_blank" rel="noopener">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Promo
+          </a>
+        </div>
+      </div>
+
+      <!-- Prabh.OS -->
+      <div class="card">
+        <div class="card-bar bar-purple"></div>
+        <span class="card-platform">GitHub Pages</span>
+        <h2 class="card-name">Prabh.OS</h2>
+        <p class="card-desc">Interactive personal profile with identity, capabilities, archive and timeline in one scrollable experience.</p>
+        <div class="card-links">
+          <a href="https://prabhsimransingh.github.io/profile/" class="lnk lnk--p" target="_blank" rel="noopener">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- WicketGram -->
+      <div class="card">
+        <div class="card-bar bar-green"></div>
+        <span class="card-platform">GitHub Pages</span>
+        <h2 class="card-name">WicketGram</h2>
+        <p class="card-desc">Cricket club Instagram poster generator. Fill a form, generate an AI image, post directly to Instagram.</p>
+        <div class="card-links">
+          <a href="https://prabhsimransingh.github.io/cricket-instagram/v2/" class="lnk lnk--p" target="_blank" rel="noopener">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- CricManager -->
+      <div class="card">
+        <div class="card-bar bar-teal"></div>
+        <span class="card-platform">GitHub Pages</span>
+        <h2 class="card-name">CricManager</h2>
+        <p class="card-desc">Cricket match analyser with CSV import, player stats, intelligent team balancing and WhatsApp-ready match cards.</p>
+        <div class="card-links">
+          <a href="https://prabhsimransingh.github.io/CricManager/" class="lnk lnk--p" target="_blank" rel="noopener">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- Excellence Blueprint -->
+      <div class="card">
+        <div class="card-bar bar-amber"></div>
+        <span class="card-platform">GitHub Pages</span>
+        <h2 class="card-name">The Excellence Blueprint</h2>
+        <p class="card-desc">Book website for Rajinder Singh's "The Excellence Blueprint" - a masterclass in building strong, adaptable organisations.</p>
+        <div class="card-links">
+          <a href="https://blueprintbook.github.io/" class="lnk lnk--p" target="_blank" rel="noopener">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- Portfolio -->
+      <div class="card">
+        <div class="card-bar bar-gold"></div>
+        <span class="card-platform">GitHub Pages</span>
+        <h2 class="card-name">Portfolio</h2>
+        <p class="card-desc">Personal portfolio covering career, speaking engagements, publications and engineering work.</p>
+        <div class="card-links">
+          <a href="https://prabhsimransingh.github.io/" class="lnk lnk--p" target="_blank" rel="noopener">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- Trend POV -->
+      <div class="card">
+        <div class="card-bar bar-purple"></div>
+        <span class="card-platform">Vercel · Node · Gemini</span>
+        <h2 class="card-name">Trend POV</h2>
+        <p class="card-desc">One new provocative point of view on AI trends daily - not a news summary, but an arguable thesis synthesised from live feeds and Google Search grounding.</p>
+        <div class="card-links">
+          <a href="https://trend-pov.vercel.app" class="lnk lnk--p" target="_blank" rel="noopener">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
+          </a>
+        </div>
+      </div>
+
+      <!-- Stock Movers -->
+      <div class="card">
+        <div class="card-bar bar-green"></div>
+        <span class="card-platform">Vercel · Node</span>
+        <h2 class="card-name">Stock Movers</h2>
+        <p class="card-desc">Live dashboard showing the top US stock gainers and losers of the day, auto-refreshing every 60 seconds via Yahoo Finance.</p>
+        <div class="card-links">
+          <a href="https://stock-movers-seven.vercel.app" class="lnk lnk--p" target="_blank" rel="noopener">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    Built by <a href="https://prabhsimransingh.github.io/">Prabh Singh</a>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width  * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
+      });
+    });
+  </script>
+
+</body>
+</html>
