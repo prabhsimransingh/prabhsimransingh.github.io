@@ -6,27 +6,32 @@
   <title>Projects — Prabh Singh</title>
   <meta name="description" content="Live projects by Prabh Singh — apps, tools and side projects shipped and running.">
   <meta property="og:title" content="Projects — Prabh Singh">
-  <meta property="og:description" content="Apps, tools and side projects shipped and running live.">
+  <meta property="og:description" content="Apps, tools and side projects — all shipped and live.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#c9a84c">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #080b12;
-      --surface:   #0f1420;
-      --border:    rgba(255,255,255,0.07);
-      --bh:        rgba(201,168,76,0.28);
-      --gold:      #c9a84c;
-      --gold-2:    #e8c76d;
-      --text:      #e8eaf0;
-      --muted:     #9ca3af;
-      --dim:       #6b7280;
-      --r:         14px;
+      --bg:         #080b12;
+      --bg-2:       #0c101a;
+      --surface:    #0f1420;
+      --surface-2:  #131826;
+      --border:     rgba(255,255,255,0.07);
+      --border-md:  rgba(255,255,255,0.11);
+      --gold:       #c9a84c;
+      --gold-2:     #e8c76d;
+      --gold-3:     #f5dfa0;
+      --text:       #eaecf0;
+      --text-2:     #b0b8c8;
+      --muted:      #6b7585;
+      --r-card:     20px;
+      --r-btn:      8px;
+      --transition: 0.24s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     html { scroll-behavior: smooth; }
@@ -37,252 +42,363 @@
       font-family: 'Inter', system-ui, sans-serif;
       min-height: 100dvh;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* noise */
+    /* grain overlay */
     body::after {
       content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 200;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.022;
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.025;
     }
 
-    /* ── NAV ── */
+    /* ── NAV ─────────────────────────────── */
     nav {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 50;
-      height: 64px;
+      position: fixed; inset: 0 0 auto;
+      z-index: 90;
+      height: 60px;
       padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(8,11,18,0.82);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
       border-bottom: 1px solid var(--border);
-      background: rgba(8,11,18,0.88);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
     }
 
     .nav-logo {
-      font-weight: 800;
-      font-size: 0.95rem;
-      letter-spacing: 0.03em;
+      font-size: 0.85rem; font-weight: 800; letter-spacing: 0.06em;
       text-decoration: none;
       background: linear-gradient(135deg, var(--gold), var(--gold-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .nav-back {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.8rem;
+    .nav-right { display: flex; align-items: center; gap: 1.25rem; }
+
+    .nav-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.1em;
       color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.2rem 0.65rem;
+    }
+
+    .nav-back {
+      display: flex; align-items: center; gap: 0.35rem;
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--text-2); text-decoration: none;
+      transition: color var(--transition);
     }
     .nav-back:hover { color: var(--text); }
     .nav-back svg { flex-shrink: 0; }
 
-    /* ── MAIN ── */
+    /* ── MAIN ────────────────────────────── */
     main {
-      max-width: 1160px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 116px 2rem 80px;
+      padding: 100px 1.75rem 80px;
     }
 
-    /* ── HEADER ── */
-    .hd {
-      margin-bottom: 3rem;
-    }
-    .hd-eye {
+    /* ── PAGE HEADER ─────────────────────── */
+    .page-header { margin-bottom: 2.75rem; }
+
+    .page-eye {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--gold);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 0.85rem;
+      font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.9rem;
+      display: flex; align-items: center; gap: 0.5rem;
     }
-    .hd-title {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 1.04;
-    }
-    .hd-sub {
-      margin-top: 0.75rem;
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: 44ch;
+    .page-eye::before {
+      content: '';
+      display: inline-block; width: 18px; height: 1px;
+      background: var(--gold); opacity: 0.6;
     }
 
-    /* ── GRID ── */
-    .grid {
+    .page-title {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 800; letter-spacing: -0.04em; line-height: 1.02;
+      background: linear-gradient(160deg, var(--text) 0%, var(--text-2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-sub {
+      margin-top: 0.7rem;
+      font-size: 0.95rem; color: var(--muted); line-height: 1.65; max-width: 42ch;
+    }
+
+    /* ── BENTO GRID ──────────────────────── */
+    .bento {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 220px;
+      gap: 1rem;
     }
 
-    /* Exactly spans 2 cols */
-    .card--w2 { grid-column: span 2; }
+    /* card placement */
+    .card-exactly       { grid-column: 1 / 3; grid-row: 1 / 3; }
+    .card-portfolio     { grid-column: 3; grid-row: 1; }
+    .card-profile       { grid-column: 4; grid-row: 1; }
+    .card-wicketgram    { grid-column: 3; grid-row: 2; }
+    .card-cricmanager   { grid-column: 4; grid-row: 2; }
+    .card-trendpov      { grid-column: 1 / 3; grid-row: 3; }
+    .card-stockmovers   { grid-column: 3; grid-row: 3; }
+    .card-blueprint     { grid-column: 4; grid-row: 3; }
 
-    /* ── CARD ── */
+    /* ── CARD BASE ───────────────────────── */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 1.6rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.25s, transform 0.22s, box-shadow 0.25s;
+      border-radius: var(--r-card);
+      padding: 1.5rem;
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+      will-change: transform;
     }
 
     /* spotlight */
     .card::before {
       content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s;
-      background: radial-gradient(520px circle at var(--mx,50%) var(--my,50%), rgba(201,168,76,0.05), transparent 42%);
+      position: absolute; inset: 0; border-radius: inherit;
+      pointer-events: none; opacity: 0;
+      transition: opacity 0.35s;
+      background: radial-gradient(480px circle at var(--mx,50%) var(--my,50%), rgba(201,168,76,0.055), transparent 50%);
+    }
+
+    /* top accent line */
+    .card::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1.5px; border-radius: var(--r-card) var(--r-card) 0 0;
+      background: var(--card-accent, transparent);
+      opacity: 0.85;
     }
 
     .card:hover {
-      border-color: var(--bh);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 44px rgba(0,0,0,0.38), 0 0 0 1px rgba(201,168,76,0.07);
+      border-color: rgba(201,168,76,0.22);
+      transform: translateY(-3px) scale(1.005);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(201,168,76,0.06);
     }
     .card:hover::before { opacity: 1; }
 
-    /* top accent bar */
-    .card-bar {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      border-radius: var(--r) var(--r) 0 0;
+    /* featured card hover is subtler due to scale */
+    .card-exactly:hover {
+      transform: translateY(-2px) scale(1.003);
     }
-    .bar-gold   { background: linear-gradient(90deg,#c9a84c,#e8c76d); }
-    .bar-blue   { background: linear-gradient(90deg,#3b82f6,#818cf8); }
-    .bar-green  { background: linear-gradient(90deg,#22c55e,#16a34a); }
-    .bar-teal   { background: linear-gradient(90deg,#14b8a6,#06b6d4); }
-    .bar-amber  { background: linear-gradient(90deg,#f59e0b,#d97706); }
-    .bar-purple { background: linear-gradient(90deg,#a855f7,#7c3aed); }
+
+    /* accent colors */
+    .accent-blue   { --card-accent: linear-gradient(90deg,#3b82f6,#818cf8); }
+    .accent-gold   { --card-accent: linear-gradient(90deg,#c9a84c,#e8c76d); }
+    .accent-purple { --card-accent: linear-gradient(90deg,#a855f7,#7c3aed); }
+    .accent-green  { --card-accent: linear-gradient(90deg,#22c55e,#16a34a); }
+    .accent-teal   { --card-accent: linear-gradient(90deg,#14b8a6,#06b6d4); }
+    .accent-amber  { --card-accent: linear-gradient(90deg,#f59e0b,#d97706); }
+    .accent-emerald{ --card-accent: linear-gradient(90deg,#10b981,#059669); }
+    .accent-rose   { --card-accent: linear-gradient(90deg,#f43f5e,#e11d48); }
+
+    /* ── FEATURED CARD (Exactly) ─────────── */
+    .card-exactly {
+      background: linear-gradient(145deg, #0f1420 0%, #111627 60%, #0d1122 100%);
+      padding: 2rem;
+    }
+
+    /* subtle grid pattern on featured */
+    .card-exactly .card-grid-bg {
+      position: absolute; inset: 0; border-radius: inherit;
+      pointer-events: none; overflow: hidden;
+      opacity: 0.04;
+    }
+    .card-exactly .card-grid-bg svg {
+      width: 100%; height: 100%;
+    }
+
+    /* ── CARD PARTS ──────────────────────── */
+    .card-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
 
     .card-platform {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.63rem;
-      color: var(--dim);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted);
     }
+
+    .card-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.18rem 0.45rem;
+    }
+    .card-tag.tag-ai     { color: #818cf8; border-color: rgba(129,140,248,0.2); background: rgba(129,140,248,0.06); }
+    .card-tag.tag-web    { color: #34d399; border-color: rgba(52,211,153,0.2);  background: rgba(52,211,153,0.06);  }
+    .card-tag.tag-node   { color: #f59e0b; border-color: rgba(245,158,11,0.2);  background: rgba(245,158,11,0.06);  }
+    .card-tag.tag-book   { color: #c9a84c; border-color: rgba(201,168,76,0.2);  background: rgba(201,168,76,0.06);  }
 
     .card-name {
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
+      font-size: 1.15rem; font-weight: 700; letter-spacing: -0.025em;
+      line-height: 1.15; color: var(--text);
     }
-    .card--w2 .card-name { font-size: 1.55rem; }
+
+    .card-exactly .card-name {
+      font-size: 2rem; font-weight: 800; letter-spacing: -0.04em;
+      background: linear-gradient(135deg, var(--text) 0%, var(--text-2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
 
     .card-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.65;
+      font-size: 0.82rem; color: var(--text-2); line-height: 1.65;
       flex: 1;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-exactly .card-desc {
+      font-size: 0.9rem; color: var(--text-2);
+      -webkit-line-clamp: 4;
+    }
+
+    /* tech chips */
+    .card-chips {
+      display: flex; flex-wrap: wrap; gap: 0.35rem;
+      margin-top: 0.75rem;
+    }
+    .chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.57rem; letter-spacing: 0.05em;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.15rem 0.4rem;
     }
 
     /* links */
     .card-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: auto;
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-top: auto; padding-top: 1rem;
     }
 
     .lnk {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.76rem;
-      font-weight: 500;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.73rem; font-weight: 500;
       text-decoration: none;
-      border-radius: 7px;
-      padding: 0.32rem 0.6rem;
+      color: var(--text-2);
+      background: rgba(255,255,255,0.04);
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      color: var(--muted);
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      border-radius: var(--r-btn);
+      padding: 0.3rem 0.6rem;
+      transition: color var(--transition), border-color var(--transition), background var(--transition), transform 0.15s ease;
+      cursor: pointer;
     }
     .lnk:hover {
       color: var(--gold);
       border-color: rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.07);
+      transform: translateY(-1px);
+    }
+    .lnk:active { transform: scale(0.97); }
+
+    .lnk--primary {
+      color: var(--gold);
+      border-color: rgba(201,168,76,0.25);
       background: rgba(201,168,76,0.06);
     }
-    .lnk--p {
-      color: var(--gold);
-      border-color: rgba(201,168,76,0.22);
-    }
-    .lnk--p:hover {
+    .lnk--primary:hover {
       border-color: rgba(201,168,76,0.5);
-      background: rgba(201,168,76,0.1);
+      background: rgba(201,168,76,0.12);
     }
 
-    /* ── FOOTER ── */
+    /* ext icon */
+    .ext-icon { opacity: 0.55; flex-shrink: 0; }
+    .lnk:hover .ext-icon { opacity: 1; }
+
+    /* ── FOOTER ──────────────────────────── */
     footer {
-      padding: 2rem;
-      text-align: center;
+      max-width: 1200px; margin: 0 auto;
+      padding: 2rem 1.75rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
       border-top: 1px solid var(--border);
-      font-size: 0.78rem;
-      color: var(--dim);
     }
-    footer a { color: var(--gold); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
 
-    /* ── ENTRY ANIMATIONS ── */
+    .footer-left {
+      font-size: 0.78rem; color: var(--muted);
+    }
+    .footer-left a { color: var(--gold); text-decoration: none; }
+    .footer-left a:hover { text-decoration: underline; }
+
+    .footer-right {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.1em;
+      color: var(--muted); opacity: 0.6;
+    }
+
+    /* ── ENTRY ANIMATIONS ────────────────── */
     @media (prefers-reduced-motion: no-preference) {
-      .hd {
-        animation: up 0.42s ease both;
-      }
-      .card {
-        opacity: 0;
-        animation: up 0.48s ease both;
-      }
-      .card:nth-child(1) { animation-delay: 0.06s; }
-      .card:nth-child(2) { animation-delay: 0.12s; }
-      .card:nth-child(3) { animation-delay: 0.18s; }
-      .card:nth-child(4) { animation-delay: 0.24s; }
-      .card:nth-child(5) { animation-delay: 0.30s; }
-      .card:nth-child(6) { animation-delay: 0.36s; }
+      .page-header { animation: fadeUp 0.45s cubic-bezier(0.22,1,0.36,1) 0.05s both; }
 
-      @keyframes up {
-        from { opacity: 0; transform: translateY(18px); }
+      .card { animation: fadeUp 0.55s cubic-bezier(0.22,1,0.36,1) both; opacity: 0; }
+      .card-exactly     { animation-delay: 0.08s; }
+      .card-portfolio   { animation-delay: 0.14s; }
+      .card-profile     { animation-delay: 0.18s; }
+      .card-wicketgram  { animation-delay: 0.22s; }
+      .card-cricmanager { animation-delay: 0.26s; }
+      .card-trendpov    { animation-delay: 0.30s; }
+      .card-stockmovers { animation-delay: 0.34s; }
+      .card-blueprint   { animation-delay: 0.38s; }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(22px); }
         to   { opacity: 1; transform: translateY(0); }
       }
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 860px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      .card--w2 { grid-column: span 2; }
+    /* ── RESPONSIVE ──────────────────────── */
+    @media (max-width: 1024px) {
+      .bento { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 200px; }
+      .card-exactly   { grid-column: 1 / 3; grid-row: 1 / 3; }
+      .card-portfolio { grid-column: 3; grid-row: 1; }
+      .card-profile   { grid-column: 3; grid-row: 2; }
+      .card-wicketgram    { grid-column: 1; grid-row: 3; }
+      .card-cricmanager   { grid-column: 2; grid-row: 3; }
+      .card-trendpov      { grid-column: 3; grid-row: 3; }
+      .card-stockmovers   { grid-column: 1 / 3; grid-row: 4; }
+      .card-blueprint     { grid-column: 3; grid-row: 4; }
     }
 
-    @media (max-width: 540px) {
-      nav { padding: 0 1.25rem; }
-      main { padding: 96px 1.25rem 60px; }
-      .grid { grid-template-columns: 1fr; }
-      .card--w2 { grid-column: span 1; }
-      .card--w2 .card-name { font-size: 1.25rem; }
+    @media (max-width: 720px) {
+      main { padding: 88px 1rem 60px; }
+      nav  { padding: 0 1rem; }
+      footer { padding: 1.5rem 1rem 2.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+
+      .bento {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: auto;
+        gap: 0.75rem;
+      }
+      .card-exactly     { grid-column: 1 / 3; grid-row: auto; min-height: 220px; }
+      .card-portfolio   { grid-column: auto; grid-row: auto; min-height: 160px; }
+      .card-profile     { grid-column: auto; grid-row: auto; min-height: 160px; }
+      .card-wicketgram  { grid-column: auto; grid-row: auto; min-height: 160px; }
+      .card-cricmanager { grid-column: auto; grid-row: auto; min-height: 160px; }
+      .card-trendpov    { grid-column: 1 / 3; grid-row: auto; min-height: 160px; }
+      .card-stockmovers { grid-column: auto; grid-row: auto; min-height: 160px; }
+      .card-blueprint   { grid-column: auto; grid-row: auto; min-height: 160px; }
+      .card-exactly .card-name { font-size: 1.5rem; }
+    }
+
+    @media (max-width: 400px) {
+      .bento { grid-template-columns: 1fr; }
+      .card-exactly, .card-trendpov { grid-column: 1; }
     }
   </style>
 </head>
@@ -290,150 +406,188 @@
 
   <nav>
     <a href="/" class="nav-logo">PS</a>
-    <a href="/" class="nav-back">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Portfolio
-    </a>
+    <div class="nav-right">
+      <span class="nav-count">8 projects</span>
+      <a href="/" class="nav-back" aria-label="Back to portfolio">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Portfolio
+      </a>
+    </div>
   </nav>
 
   <main>
-    <div class="hd">
-      <p class="hd-eye">// live projects</p>
-      <h1 class="hd-title">Things I built.</h1>
-      <p class="hd-sub">Apps, tools and side projects — all shipped and running live.</p>
-    </div>
+    <header class="page-header">
+      <p class="page-eye" aria-hidden="true">live projects</p>
+      <h1 class="page-title">Things I built.</h1>
+      <p class="page-sub">Apps, tools, and side projects — all shipped and running live.</p>
+    </header>
 
-    <div class="grid">
+    <div class="bento" role="list">
 
-      <!-- Exactly — featured, 2 cols -->
-      <div class="card card--w2">
-        <div class="card-bar bar-blue"></div>
-        <span class="card-platform">Vercel · Expo · Next.js</span>
+      <!-- ── EXACTLY (featured 2×2) ── -->
+      <article class="card card-exactly accent-blue" role="listitem" aria-label="Exactly project">
+        <div class="card-grid-bg" aria-hidden="true">
+          <svg viewBox="0 0 400 440" preserveAspectRatio="none">
+            <defs>
+              <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="400" height="440" fill="url(#g)"/>
+          </svg>
+        </div>
+        <div class="card-meta">
+          <span class="card-platform">Vercel · Expo · Next.js</span>
+          <span class="card-tag tag-ai">AI</span>
+        </div>
         <h2 class="card-name">Exactly</h2>
         <p class="card-desc">AI product recommendation app. One query, one confident answer — product name, price, store and buy link. No comparison lists, no noise. Just the right thing.</p>
+        <div class="card-chips">
+          <span class="chip">React Native</span>
+          <span class="chip">Next.js</span>
+          <span class="chip">OpenAI</span>
+          <span class="chip">Vercel</span>
+        </div>
         <div class="card-links">
-          <a href="https://exactly-mobile.vercel.app" class="lnk lnk--p" target="_blank" rel="noopener">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <a href="https://exactly-mobile.vercel.app" class="lnk lnk--primary" target="_blank" rel="noopener" aria-label="Exactly live app">
+            <svg class="ext-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Live App
           </a>
-          <a href="https://exactly-mobile.vercel.app/pitch" class="lnk" target="_blank" rel="noopener">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <a href="https://exactly-mobile.vercel.app/pitch" class="lnk" target="_blank" rel="noopener" aria-label="Exactly pitch deck">
+            <svg class="ext-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Pitch Deck
           </a>
-          <a href="https://hyperframes.dev/p/05f22830-773f-4db6-a592-3b516aca5b31?claim_token=L5NvchxuxPagzbvqPsK12kyhr0GPwmpG" class="lnk" target="_blank" rel="noopener">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <a href="https://hyperframes.dev/p/05f22830-773f-4db6-a592-3b516aca5b31?claim_token=L5NvchxuxPagzbvqPsK12kyhr0GPwmpG" class="lnk" target="_blank" rel="noopener" aria-label="Exactly promo video">
+            <svg class="ext-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Promo
           </a>
         </div>
-      </div>
+      </article>
 
-      <!-- Prabh.OS -->
-      <div class="card">
-        <div class="card-bar bar-purple"></div>
-        <span class="card-platform">GitHub Pages</span>
-        <h2 class="card-name">Prabh.OS</h2>
-        <p class="card-desc">Interactive personal profile with identity, capabilities, archive and timeline in one scrollable experience.</p>
-        <div class="card-links">
-          <a href="https://prabhsimransingh.github.io/profile/" class="lnk lnk--p" target="_blank" rel="noopener">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Open
-          </a>
+      <!-- ── PORTFOLIO ── -->
+      <article class="card card-portfolio accent-gold" role="listitem" aria-label="Portfolio project">
+        <div class="card-meta">
+          <span class="card-platform">GitHub Pages</span>
+          <span class="card-tag tag-web">Web</span>
         </div>
-      </div>
-
-      <!-- WicketGram -->
-      <div class="card">
-        <div class="card-bar bar-green"></div>
-        <span class="card-platform">GitHub Pages</span>
-        <h2 class="card-name">WicketGram</h2>
-        <p class="card-desc">Cricket club Instagram poster generator. Fill a form, generate an AI image, post directly to Instagram.</p>
-        <div class="card-links">
-          <a href="https://prabhsimransingh.github.io/cricket-instagram/v2/" class="lnk lnk--p" target="_blank" rel="noopener">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Open
-          </a>
-        </div>
-      </div>
-
-      <!-- CricManager -->
-      <div class="card">
-        <div class="card-bar bar-teal"></div>
-        <span class="card-platform">GitHub Pages</span>
-        <h2 class="card-name">CricManager</h2>
-        <p class="card-desc">Cricket match analyser with CSV import, player stats, intelligent team balancing and WhatsApp-ready match cards.</p>
-        <div class="card-links">
-          <a href="https://prabhsimransingh.github.io/CricManager/" class="lnk lnk--p" target="_blank" rel="noopener">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Open
-          </a>
-        </div>
-      </div>
-
-      <!-- Excellence Blueprint -->
-      <div class="card">
-        <div class="card-bar bar-amber"></div>
-        <span class="card-platform">GitHub Pages</span>
-        <h2 class="card-name">The Excellence Blueprint</h2>
-        <p class="card-desc">Book website for Rajinder Singh's "The Excellence Blueprint" - a masterclass in building strong, adaptable organisations.</p>
-        <div class="card-links">
-          <a href="https://blueprintbook.github.io/" class="lnk lnk--p" target="_blank" rel="noopener">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Open
-          </a>
-        </div>
-      </div>
-
-      <!-- Portfolio -->
-      <div class="card">
-        <div class="card-bar bar-gold"></div>
-        <span class="card-platform">GitHub Pages</span>
         <h2 class="card-name">Portfolio</h2>
-        <p class="card-desc">Personal portfolio covering career, speaking engagements, publications and engineering work.</p>
+        <p class="card-desc">Engineering executive portfolio with career, speaking, publications and open source work.</p>
         <div class="card-links">
-          <a href="https://prabhsimransingh.github.io/" class="lnk lnk--p" target="_blank" rel="noopener">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <a href="https://prabhsimransingh.github.io/" class="lnk lnk--primary" target="_blank" rel="noopener" aria-label="View portfolio">
+            <svg class="ext-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Open
           </a>
         </div>
-      </div>
+      </article>
 
-      <!-- Trend POV -->
-      <div class="card">
-        <div class="card-bar bar-purple"></div>
-        <span class="card-platform">Vercel · Node · Gemini</span>
+      <!-- ── PRABH.OS ── -->
+      <article class="card card-profile accent-purple" role="listitem" aria-label="Prabh.OS profile project">
+        <div class="card-meta">
+          <span class="card-platform">GitHub Pages</span>
+          <span class="card-tag tag-web">Web</span>
+        </div>
+        <h2 class="card-name">Prabh.OS</h2>
+        <p class="card-desc">Interactive profile with identity, capabilities, archive and timeline.</p>
+        <div class="card-links">
+          <a href="https://prabhsimransingh.github.io/profile/" class="lnk lnk--primary" target="_blank" rel="noopener" aria-label="View Prabh.OS profile">
+            <svg class="ext-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
+          </a>
+        </div>
+      </article>
+
+      <!-- ── WICKETGRAM ── -->
+      <article class="card card-wicketgram accent-green" role="listitem" aria-label="WicketGram project">
+        <div class="card-meta">
+          <span class="card-platform">GitHub Pages</span>
+          <span class="card-tag tag-ai">AI</span>
+        </div>
+        <h2 class="card-name">WicketGram</h2>
+        <p class="card-desc">Cricket club Instagram poster generator — AI image, direct post.</p>
+        <div class="card-links">
+          <a href="https://prabhsimransingh.github.io/cricket-instagram/v2/" class="lnk lnk--primary" target="_blank" rel="noopener" aria-label="Open WicketGram">
+            <svg class="ext-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
+          </a>
+        </div>
+      </article>
+
+      <!-- ── CRICMANAGER ── -->
+      <article class="card card-cricmanager accent-teal" role="listitem" aria-label="CricManager project">
+        <div class="card-meta">
+          <span class="card-platform">GitHub Pages</span>
+          <span class="card-tag tag-web">Web</span>
+        </div>
+        <h2 class="card-name">CricManager</h2>
+        <p class="card-desc">Cricket match analyser — stats, team balancing, WhatsApp cards.</p>
+        <div class="card-links">
+          <a href="https://prabhsimransingh.github.io/CricManager/" class="lnk lnk--primary" target="_blank" rel="noopener" aria-label="Open CricManager">
+            <svg class="ext-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
+          </a>
+        </div>
+      </article>
+
+      <!-- ── TREND POV (wide 2×1) ── -->
+      <article class="card card-trendpov accent-amber" role="listitem" aria-label="Trend POV project">
+        <div class="card-meta">
+          <span class="card-platform">Vercel · Node · Gemini</span>
+          <span class="card-tag tag-ai">AI</span>
+        </div>
         <h2 class="card-name">Trend POV</h2>
-        <p class="card-desc">One new provocative point of view on AI trends daily - not a news summary, but an arguable thesis synthesised from live feeds and Google Search grounding.</p>
+        <p class="card-desc">One provocative AI thesis per day — not a news summary, but an arguable point of view synthesised from live RSS feeds and Google Search grounding.</p>
         <div class="card-links">
-          <a href="https://trend-pov.vercel.app" class="lnk lnk--p" target="_blank" rel="noopener">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <a href="https://trend-pov.vercel.app" class="lnk lnk--primary" target="_blank" rel="noopener" aria-label="Open Trend POV">
+            <svg class="ext-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Open
           </a>
         </div>
-      </div>
+      </article>
 
-      <!-- Stock Movers -->
-      <div class="card">
-        <div class="card-bar bar-green"></div>
-        <span class="card-platform">Vercel · Node</span>
+      <!-- ── STOCK MOVERS ── -->
+      <article class="card card-stockmovers accent-emerald" role="listitem" aria-label="Stock Movers project">
+        <div class="card-meta">
+          <span class="card-platform">Vercel · Node</span>
+          <span class="card-tag tag-node">Live</span>
+        </div>
         <h2 class="card-name">Stock Movers</h2>
-        <p class="card-desc">Live dashboard showing the top US stock gainers and losers of the day, auto-refreshing every 60 seconds via Yahoo Finance.</p>
+        <p class="card-desc">Top US stock gainers and losers, refreshing every 60 seconds.</p>
         <div class="card-links">
-          <a href="https://stock-movers-seven.vercel.app" class="lnk lnk--p" target="_blank" rel="noopener">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <a href="https://stock-movers-seven.vercel.app" class="lnk lnk--primary" target="_blank" rel="noopener" aria-label="Open Stock Movers">
+            <svg class="ext-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Open
           </a>
         </div>
-      </div>
+      </article>
+
+      <!-- ── EXCELLENCE BLUEPRINT ── -->
+      <article class="card card-blueprint accent-rose" role="listitem" aria-label="The Excellence Blueprint project">
+        <div class="card-meta">
+          <span class="card-platform">GitHub Pages</span>
+          <span class="card-tag tag-book">Book</span>
+        </div>
+        <h2 class="card-name">Excellence Blueprint</h2>
+        <p class="card-desc">Book website for Rajinder Singh's guide to building strong organisations.</p>
+        <div class="card-links">
+          <a href="https://blueprintbook.github.io/" class="lnk lnk--primary" target="_blank" rel="noopener" aria-label="Open Excellence Blueprint site">
+            <svg class="ext-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open
+          </a>
+        </div>
+      </article>
 
     </div>
   </main>
 
   <footer>
-    Built by <a href="https://prabhsimransingh.github.io/">Prabh Singh</a>
+    <span class="footer-left">Built by <a href="https://prabhsimransingh.github.io/">Prabh Singh</a></span>
+    <span class="footer-right">prabhsimransingh.github.io</span>
   </footer>
 
   <script>
-    document.querySelectorAll('.card').forEach(card => {
+    // Spotlight hover effect — tracks mouse per card
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
         card.style.setProperty('--mx', ((e.clientX - r.left) / r.width  * 100) + '%');
